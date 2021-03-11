@@ -15,12 +15,12 @@ def rot90(x, k=1):
 
 def hflip(x):
     """flip batch of images horizontally"""
-    return x.flip(3)
+    return x.flip([3])
 
 
 def vflip(x):
     """flip batch of images vertically"""
-    return x.flip(2)
+    return x.flip([2])
 
 
 def sum(x1, x2):
