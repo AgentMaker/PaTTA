@@ -135,7 +135,7 @@ PyPI:
 ```bash
 # After downloading the whole dir
 $ git clone https://github.com/AgentMaker/PaTTA.git
-$ pip install PaTTA-mian/
+$ pip install PaTTA/
 
 # or
 
