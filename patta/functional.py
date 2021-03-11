@@ -1,10 +1,15 @@
 import paddle
 import paddle.nn.functional as F
+import numpy as np
 
 
 def rot90(x, k=1):
     """rotate batch of images by 90 degrees k times"""
-    rot = paddle.numpy().rot90(x, k, (2, 3))
+    try:
+        x = paddle.to_tensor(x).numpy()
+    except:
+        x = x.numpy()
+    rot = np.rot90(x, k, (2, 3))
     return paddle.to_tensor(rot)
 
 

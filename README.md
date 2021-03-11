@@ -18,7 +18,7 @@ Image Test Time Augmentation with Paddle2.0!
 4. [Merge modes](#merge-modes)
 5. [Installation](#installation)
 
-## Quick start
+## Quick start (Default Transforms)
 
 #####  Segmentation model wrapping [[docstring](patta/wrappers.py#L8)]:
 ```python
@@ -34,9 +34,9 @@ tta_model = tta.ClassificationTTAWrapper(model, tta.aliases.five_crop_transform(
 ```python
 tta_model = tta.KeypointsTTAWrapper(model, tta.aliases.flip_transform(), scaled=True)
 ```
-**Note**: the model must return keypoints in the format `paddle([x1, y1, ..., xn, yn])`
+**Note**: the model must return keypoints in the format `Tensor([x1, y1, ..., xn, yn])`
 
-## Advanced Examples
+## Advanced Examples (DIY Transforms)
 #####  Custom transform:
 ```python
 # defined 2 * 2 * 3 * 3 = 36 augmentations !
@@ -77,7 +77,7 @@ label = mean(labels)
 mask = mean(masks)
 ```
  
-## Transforms
+## Optional Transforms
   
 | Transform      | Parameters                | Values                            |
 |----------------|:-------------------------:|:---------------------------------:|
@@ -90,7 +90,7 @@ mask = mean(masks)
 | Multiply       | factors                   | List\[float]                      |
 | FiveCrops      | crop_height<br>crop_width | int<br>int                        |
  
-## Aliases
+## Aliases (Combos)
 
   - flip_transform (horizontal + vertical flips)
   - hflip_transform (horizontal flip)
@@ -111,8 +111,11 @@ mask = mean(masks)
 PyPI:
 ```bash
 # After downloading the whole dir
-$ pip install patta/
+$ git clone https://github.com/AgentMaker/PaTTA.git
+$ pip install PaTTA-mian/
+
 # or
+
 $ pip install git+https://github.com/AgentMaker/PaTTA.git
 ```
 
