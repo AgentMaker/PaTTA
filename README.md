@@ -22,6 +22,7 @@ Image Test Time Augmentation with Paddle2.0!
 
 #### Test
 We support that you can use the following to test after defining the network.
+
 #####  Segmentation model wrapping [[docstring](patta/wrappers.py#L8)]:
 ```python
 import patta as tta
@@ -39,6 +40,7 @@ tta_model = tta.KeypointsTTAWrapper(model, tta.aliases.flip_transform(), scaled=
 
 #### Predict
 We support that you can use the following to test when you have the predictive model: `__model__`、`__params__`.
+
 #####  Load model [[docstring](patta/load_model.py#L3)]:
 ```python
 import patta as tta
