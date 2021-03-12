@@ -12,3 +12,5 @@ from .transforms import (
 from . import aliases
 
 from .load_model import load_model
+
+from .dataloader import SegDataLoader
