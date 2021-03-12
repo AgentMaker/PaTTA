@@ -15,8 +15,8 @@ Image Test Time Augmentation with Paddle2.0!
 1. [Quick Start](#quick-start)
 - [Test](#Test)
 - [Predict](#Predict)
-- [Use Tools](#Use Tools)
-2. [Transforms](#transforms)
+- [Use Tools](#Use-Tools)
+2. [Transforms](#Advanced-Examples)
 3. [Aliases](#aliases)
 4. [Merge modes](#merge-modes)
 5. [Installation](#installation)
@@ -62,7 +62,7 @@ tta_model = tta.ClassificationTTAWrapper(model, tta.aliases.five_crop_transform(
 tta_model = tta.KeypointsTTAWrapper(model, tta.aliases.flip_transform(), scaled=True)
 ```
 
-#### Use Tools
+#### Use-Tools
 #####  Segmentation model [[docstring](tools/seg.py)]:
 ```python
 python seg.py --model_path='output' \
@@ -73,7 +73,7 @@ python seg.py --model_path='output' \
 ```
 **Note**: Related to [paddleseg](https://github.com/PaddlePaddle/Paddleseg)
 
-## Advanced Examples (DIY Transforms)
+## Advanced-Examples (DIY Transforms)
 #####  Custom transform:
 ```python
 # defined 2 * 2 * 3 * 3 = 36 augmentations !
@@ -136,7 +136,7 @@ mask = mean(masks)
   - five_crop_transform (corner crops + center crop)
   - ten_crop_transform (five crops + five crops on horizontal flip)
   
-## Merge modes
+## Merge-modes
  - mean
  - gmean (geometric mean)
  - sum
