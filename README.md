@@ -16,9 +16,9 @@ Image Test Time Augmentation with Paddle2.0!
 - [Test](#Test)
 - [Predict](#Predict)
 - [Use Tools](#Use-Tools)
-2. [Transforms](#Advanced-Examples)
-3. [Aliases](#aliases)
-4. [Merge modes](#merge-modes)
+2. [Transforms](#Advanced-Examples (DIY Transforms))
+3. [Aliases](#Aliases (Combos))
+4. [Merge modes](#Merge-modes)
 5. [Installation](#installation)
 
 ## Quick start (Default Transforms)
