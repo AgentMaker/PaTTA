@@ -59,6 +59,17 @@ tta_model = tta.ClassificationTTAWrapper(model, tta.aliases.five_crop_transform(
 tta_model = tta.KeypointsTTAWrapper(model, tta.aliases.flip_transform(), scaled=True)
 ```
 
+#### Use Tools
+#####  Segmentation model [[docstring](tools/seg.py)]:
+```python
+python seg.py --model_path='output' \
+                 --model_filename 'model.pdmodel' \
+                 --params_filename 'model.pdiparams' \
+                 --batch_size=16 \
+                 --test_dataset='test.txt'
+```
+**Note**: Related to [paddleseg](https://github.com/PaddlePaddle/Paddleseg)
+
 ## Advanced Examples (DIY Transforms)
 #####  Custom transform:
 ```python
