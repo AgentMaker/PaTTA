@@ -13,6 +13,9 @@ Image Test Time Augmentation with Paddle2.0!
 ```
 ## Table of Contents
 1. [Quick Start](#quick-start)
+- [Test](#Test)
+- [Predict](#Predict)
+- [Use Tools](#Use Tools)
 2. [Transforms](#transforms)
 3. [Aliases](#aliases)
 4. [Merge modes](#merge-modes)
