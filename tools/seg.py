@@ -6,22 +6,20 @@ import cv2
 import argparse
 
 parser = argparse.ArgumentParser(description='PaTTA Initialization')
-parser.add_argument('--model_path', type=str, default='model')
-parser.add_argument('--model_filename', type=str, default='__model__')
-parser.add_argument('--params_filename', type=str, default='__params__')
+parser.add_argument('--model_path', type=str, default='output/model')
 parser.add_argument('--batch_size', type=int, default=32)
 parser.add_argument('--test_dataset', type=str, default='test.txt')
 parser.add_argument('--crop_size', type=tuple, default=(224, 224))
 args = parser.parse_args()
 
-def load(model_path, model_filename='__model__', params_filename='__params__'):
-    model = tta.load_model(path=model_path, model_filename=model_filename, params_filename=params_filename)
+def load(model_path):
+    model = tta.load_model(path=model_path)
     tta_model = tta.SegmentationTTAWrapper(model, tta.aliases.d4_transform(), merge_mode='mean')
 
     return tta_model
 
 def main(batch_size, imgs_list, crop_size):
-    tta_model = load(args.model_path, args.model_filename, args.params_filename)
+    tta_model = load(args.model_path)
     data_loader = tta.SegDataLoader(batch_size, imgs_list, crop_size)
     for batch_id, data in enumerate(data_loader()):
         tensor_img = paddle.to_tensor(data)

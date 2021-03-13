@@ -65,9 +65,7 @@ tta_model = tta.KeypointsTTAWrapper(model, tta.aliases.flip_transform(), scaled=
 #### Use-Tools
 #####  Segmentation model [[docstring](tools/seg.py)]:
 ```python
-python seg.py --model_path='output' \
-                 --model_filename 'model.pdmodel' \
-                 --params_filename 'model.pdiparams' \
+python seg.py --model_path='output/model' \
                  --batch_size=16 \
                  --test_dataset='test.txt'
 ```
