@@ -36,7 +36,7 @@ class SegmentationTTAWrapper(nn.Layer):
 
         for transformer in self.transforms:
             augmented_image = transformer.augment_image(image)
-            augmented_output = self.model(augmented_image, *args)
+            augmented_output = self.model(augmented_image, *args)[0]
             if self.output_key is not None:
                 augmented_output = augmented_output[self.output_key]
             deaugmented_output = transformer.deaugment_mask(augmented_output)
