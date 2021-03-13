@@ -42,12 +42,12 @@ tta_model = tta.KeypointsTTAWrapper(model, tta.aliases.flip_transform(), scaled=
 **Note**: the model must return keypoints in the format `Tensor([x1, y1, ..., xn, yn])`
 
 #### Predict
-We support that you can use the following to test when you have the predictive model: `__model__`、`__params__`.
+We support that you can use the following to test when you have the static model: `*.pdmodel`、`*.pdiparams`、`*.pdiparams.info`.
 
 #####  Load model [[docstring](patta/load_model.py#L3)]:
 ```python
 import patta as tta
-model = tta.load_model(path='model', model_filename='__model__', params_filename='__params__')
+model = tta.load_model(path='output/model')
 ```
 #####  Segmentation model wrapping [[docstring](patta/wrappers.py#L8)]:
 ```python
@@ -64,6 +64,7 @@ tta_model = tta.KeypointsTTAWrapper(model, tta.aliases.flip_transform(), scaled=
 
 #### Use-Tools
 #####  Segmentation model [[docstring](tools/seg.py)]:
+We recommend modifying the file `seg.py` according to your own model.
 ```python
 python seg.py --model_path='output/model' \
                  --batch_size=16 \
