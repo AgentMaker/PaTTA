@@ -1,4 +1,7 @@
 # Patta
+![GitHub forks](https://img.shields.io/github/forks/AgentMaker/PaTTA)
+![GitHub Repo stars](https://img.shields.io/github/stars/AgentMaker/PaTTA)
+![GitHub](https://img.shields.io/github/license/AgentMaker/PaTTA)  
 Image Test Time Augmentation with Paddle2.0!
 
 ```
