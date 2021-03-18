@@ -151,9 +151,9 @@ PyPI:
 ```bash
 # Use pip install PaTTA
 $ pip install patta
-
+```
 or
-
+```bash
 # After downloading the whole dir
 $ git clone https://github.com/AgentMaker/PaTTA.git
 $ pip install PaTTA/
