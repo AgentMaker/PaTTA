@@ -149,13 +149,15 @@ mask = mean(masks)
 ## Installation
 PyPI:
 ```bash
+# Use pip install PaTTA
+$ pip install patta
+
+or
+
 # After downloading the whole dir
 $ git clone https://github.com/AgentMaker/PaTTA.git
 $ pip install PaTTA/
 
-# or
-
-$ pip install git+https://github.com/AgentMaker/PaTTA.git
 ```
 
 ## Run tests
