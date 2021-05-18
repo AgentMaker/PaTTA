@@ -12,7 +12,7 @@ Image Test Time Augmentation with Paddle2.0!
         / / /|\ \ \      # apply augmentations (flips, rotation, scale, etc.)
        | | | | | | |     # pass augmented batches through model
        | | | | | | |     # reverse transformations for each batch of masks/labels
-        \ \ \ / / /      # merge predictions (mean, max, gmean, etc.)
+        \ \ \|/ / /      # merge predictions (mean, max, gmean, etc.)
              |           # output batch of masks/labels
            Output
 ```
