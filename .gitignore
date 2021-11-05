@@ -122,3 +122,6 @@ dmypy.json
 
 # Jupyter Notebook
 *.ipynb
+
+# VS Code Config
+.vscode/

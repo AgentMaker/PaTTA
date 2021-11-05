@@ -104,7 +104,7 @@ class Scale(DualTransform):
         self,
         scales: List[Union[int, float]],
         interpolation: str = "nearest",
-        align_corners: Optional[bool] = None,
+        align_corners: bool = False,
     ):
         if self.identity_param not in scales:
             scales = [self.identity_param] + list(scales)
@@ -155,7 +155,7 @@ class Resize(DualTransform):
         sizes: List[Tuple[int, int]],
         original_size: Tuple[int, int] = None,
         interpolation: str = "nearest",
-        align_corners: Optional[bool] = None,
+        align_corners: bool = False,
     ):
         if original_size is not None and original_size not in sizes:
             sizes = [original_size] + list(sizes)
@@ -242,7 +242,7 @@ class FiveCrops(ImageOnlyTransform):
 
     Args:
         crop_height (int): crop height in pixels
-        crop_width (int): crop width in pixels 
+        crop_width (int): crop width in pixels
     """
 
     def __init__(self, crop_height, crop_width):
