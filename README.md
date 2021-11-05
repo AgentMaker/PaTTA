@@ -165,7 +165,5 @@ $ pip install PaTTA/
 ## Run tests
 
 ```bash
-# run test_transforms.py and test_base.py for test
-python test/test_transforms.py
-python test/test_base.py
+python -m pytest
 ```
