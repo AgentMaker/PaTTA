@@ -3,6 +3,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/AgentMaker/PaTTA)
 ![GitHub](https://img.shields.io/github/license/AgentMaker/PaTTA)
 [![Upload Python Package](https://github.com/AgentMaker/PaTTA/actions/workflows/python-publish.yml/badge.svg)](https://github.com/AgentMaker/PaTTA/actions/workflows/python-publish.yml)
+[![PaTTA Tests](https://github.com/AgentMaker/PaTTA/actions/workflows/tests.yml/badge.svg)](https://github.com/AgentMaker/PaTTA/actions/workflows/tests.yml)
 
 Image Test Time Augmentation with Paddle2.0!
 
@@ -165,7 +166,5 @@ $ pip install PaTTA/
 ## Run tests
 
 ```bash
-# run test_transforms.py and test_base.py for test
-python test/test_transforms.py
-python test/test_base.py
+python -m pytest
 ```

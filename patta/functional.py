@@ -48,7 +48,7 @@ def multiply(x, factor):
     return x * factor
 
 
-def scale(x, scale_factor, interpolation="nearest", align_corners=None):
+def scale(x, scale_factor, interpolation="nearest", align_corners=False):
     """scale batch of images by `scale_factor` with given interpolation mode"""
     h, w = x.shape[2:]
     new_h = int(h * scale_factor)
@@ -58,7 +58,7 @@ def scale(x, scale_factor, interpolation="nearest", align_corners=None):
     )
 
 
-def resize(x, size, interpolation="nearest", align_corners=None):
+def resize(x, size, interpolation="nearest", align_corners=False):
     """resize batch of images to given spatial size with given interpolation mode"""
     return F.interpolate(x, size=size, mode=interpolation, align_corners=align_corners)
 

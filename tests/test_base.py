@@ -15,8 +15,8 @@ def test_compose_1():
 
     assert len(transform) == 2 * 2 * 4 * 3  # all combinations for aug parameters
 
-    dummy_label = paddle.ones(2).reshape(2, 1).float()
-    dummy_image = paddle.arange(2 * 3 * 4 * 5).reshape(2, 3, 4, 5).float()
+    dummy_label = paddle.ones((2,), paddle.float32).reshape((2, 1))
+    dummy_image = paddle.arange(2 * 3 * 4 * 5).reshape((2, 3, 4, 5)).astype(paddle.float32)
     dummy_model = lambda x: {"label": dummy_label, "mask": x}
 
     for augmenter in transform:
@@ -44,5 +44,5 @@ def test_merger(case):
     input = [1.0, 0.0, 0.5]
     merger = tta.base.Merger(type=merge_type, n=len(input))
     for i in input:
-        merger.append(paddle.tensor(i))
-    assert paddle.allclose(merger.result, paddle.tensor(output))
+        merger.append(paddle.to_tensor(i))
+    assert paddle.allclose(merger.result, paddle.to_tensor(output))
