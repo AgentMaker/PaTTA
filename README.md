@@ -125,12 +125,16 @@ mask = mean(masks)
 |----------------|:-------------------------:|:---------------------------------:|
 | HorizontalFlip | -                         | -                                 |
 | VerticalFlip   | -                         | -                                 |
+| HorizontalShift| shifts                    | List\[float]                      |
+| VerticalShift  | shifts                    | List\[float]                      |
 | Rotate90       | angles                    | List\[0, 90, 180, 270]            |
 | Scale          | scales<br>interpolation   | List\[float]<br>"nearest"/"linear"|
 | Resize         | sizes<br>original_size<br>interpolation   | List\[Tuple\[int, int]]<br>Tuple\[int,int]<br>"nearest"/"linear"|
 | Add            | values                    | List\[float]                      |
 | Multiply       | factors                   | List\[float]                      |
 | FiveCrops      | crop_height<br>crop_width | int<br>int                        |
+| AdjustContrast | factors                   | List\[float]                      |
+| AdjustBrightness|factors                   | List\[float]                      |
  
 ## Aliases (Combos)
 
