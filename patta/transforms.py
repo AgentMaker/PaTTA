@@ -354,3 +354,71 @@ class AdjustBrightness(ImageOnlyTransform):
             return F.adjust_brightness(image, factor)
         return image
 
+
+class AverageBlur(ImageOnlyTransform):
+    """Apply average blur to the input image
+
+    Args:
+        kernel_sizes (List[Union[Tuple[int, int], int]]): kernel size of average blur
+    """
+
+    identity_param = 1
+
+    def __init__(
+        self,
+        kernel_sizes: List[Union[Tuple[int, int], int]],
+    ):
+        if self.identity_param not in kernel_sizes:
+            kernel_sizes = [self.identity_param] + list(kernel_sizes)
+        super().__init__("kernel_size", kernel_sizes)
+
+    def apply_aug_image(self, image, kernel_size, **kwargs):
+        if kernel_size == self.identity_param:
+            return image
+        return F.average_blur(image, kernel_size)
+
+
+class GaussianBlur(ImageOnlyTransform):
+    """Apply gaussian blur to the input image
+
+    Args:
+        kernel_sizes (List[Union[Tuple[int, int], int]]): kernel size of gaussian blur
+        sigma (Optional[Union[Tuple[float, float], float]]): gaussian kernel standard deviation
+    """
+    
+    identity_param = 1
+
+    def __init__(
+        self,
+        kernel_sizes: List[Union[Tuple[int, int], int]],
+        sigma: Optional[Union[Tuple[float, float], float]] = None
+    ):
+        if self.identity_param not in kernel_sizes:
+            kernel_sizes = [self.identity_param] + list(kernel_sizes)
+        self.sigma = sigma
+        super().__init__("kernel_size", kernel_sizes)
+
+    def apply_aug_image(self, image, kernel_size, **kwargs):
+        if kernel_size == self.identity_param:
+            return image
+        return F.gaussian_blur(image, kernel_size, self.sigma)
+
+
+class Sharpen(ImageOnlyTransform):
+    """Apply sharpen to the input image
+
+    Args:
+        kernel_sizes (List[int]): kernel size of sharpen
+    """
+
+    identity_param = 1
+
+    def __init__(self, kernel_sizes: List[int]):
+        if self.identity_param not in kernel_sizes:
+            kernel_sizes = [self.identity_param] + list(kernel_sizes)
+        super().__init__("kernel_size", kernel_sizes)
+
+    def apply_aug_image(self, image, kernel_size, **kwargs):
+        if kernel_size == self.identity_param:
+            return image
+        return F.sharpen(image, kernel_size)

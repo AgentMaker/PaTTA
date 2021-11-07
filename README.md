@@ -135,6 +135,9 @@ mask = mean(masks)
 | FiveCrops      | crop_height<br>crop_width | int<br>int                        |
 | AdjustContrast | factors                   | List\[float]                      |
 | AdjustBrightness|factors                   | List\[float]                      |
+| AverageBlur    | kernel_sizes              | List\[Union\[Tuple\[int, int], int]] |
+| GaussianBlur   | kernel_sizes<br>sigma     | List\[Union\[Tuple\[int, int], int]]<br>Optional\[Union\[Tuple\[float, float], float]]|
+| Sharpen        | kernel_sizes              | List[int]                         |
  
 ## Aliases (Combos)
 

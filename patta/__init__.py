@@ -18,6 +18,9 @@ from .transforms import (
     Resize,
     AdjustContrast,
     AdjustBrightness,
+    AverageBlur,
+    GaussianBlur,
+    Sharpen,
 )
 
 from . import aliases
