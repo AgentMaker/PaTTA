@@ -1,12 +1,26 @@
 from .wrappers import (
     SegmentationTTAWrapper,
     ClassificationTTAWrapper,
-    KeypointsTTAWrapper
+    KeypointsTTAWrapper,
 )
 from .base import Compose
 
 from .transforms import (
-    HorizontalFlip, VerticalFlip, Rotate90, Scale, Add, Multiply, FiveCrops, Resize
+    HorizontalFlip,
+    VerticalFlip,
+    HorizontalShift,
+    VerticalShift,
+    Rotate90,
+    Scale,
+    Add,
+    Multiply,
+    FiveCrops,
+    Resize,
+    AdjustContrast,
+    AdjustBrightness,
+    AverageBlur,
+    GaussianBlur,
+    Sharpen,
 )
 
 from . import aliases

@@ -58,6 +58,54 @@ class VerticalFlip(DualTransform):
         return keypoints
 
 
+class HorizontalShift(DualTransform):
+    """Shift images horizontally (left->right)"""
+
+    identity_param = 0
+
+    def __init__(self, shifts: List[float]):
+        if self.identity_param not in shifts:
+            shifts = [self.identity_param] + list(shifts)
+        super().__init__("shifts", shifts)
+
+    def apply_aug_image(self, image, shifts=0, **kwargs):
+        image = F.hshift(image, shifts)
+        return image
+
+    def apply_deaug_mask(self, mask, shifts=0, **kwargs):
+        return self.apply_aug_image(mask, -shifts)
+
+    def apply_deaug_label(self, label, shifts=0, **kwargs):
+        return label
+
+    def apply_deaug_keypoints(self, keypoints, shifts=0, **kwargs):
+        return F.keypoints_hshift(keypoints, -shifts)
+
+
+class VerticalShift(DualTransform):
+    """Shift images vertically (up->down)"""
+
+    identity_param = 0
+
+    def __init__(self, shifts: List[float]):
+        if self.identity_param not in shifts:
+            shifts = [self.identity_param] + list(shifts)
+        super().__init__("shifts", shifts)
+
+    def apply_aug_image(self, image, shifts=0, **kwargs):
+        image = F.vshift(image, shifts)
+        return image
+
+    def apply_deaug_mask(self, mask, shifts=0, **kwargs):
+        return self.apply_aug_image(mask, -shifts)
+
+    def apply_deaug_label(self, label, shifts=0, **kwargs):
+        return label
+
+    def apply_deaug_keypoints(self, keypoints, shifts=0, **kwargs):
+        return F.keypoints_vshift(keypoints, -shifts)
+
+
 class Rotate90(DualTransform):
     """Rotate images 0/90/180/270 degrees
 
@@ -263,3 +311,114 @@ class FiveCrops(ImageOnlyTransform):
 
     def apply_deaug_keypoints(self, keypoints, **kwargs):
         raise ValueError("`FiveCrop` augmentation is not suitable for keypoints!")
+
+
+class AdjustContrast(ImageOnlyTransform):
+    """Adjusts contrast of an Image.
+
+    Args:
+        factors (List[float]): How much to adjust the contrast.
+    """
+
+    identity_param = 1.
+
+    def __init__(self, factors: List[float]):
+
+        if self.identity_param not in factors:
+            factors = [self.identity_param] + list(factors)
+        super().__init__("factor", factors)
+
+    def apply_aug_image(self, image, factor=1., **kwargs):
+        if factor != self.identity_param:
+            return F.adjust_contrast(image, factor)
+        return image
+
+
+class AdjustBrightness(ImageOnlyTransform):
+    """Adjusts brightness of an Image.
+
+    Args:
+        factors (List[float]): How much to adjust the brightness.
+    """
+
+    identity_param = 1.
+    
+    def __init__(self, factors: List[float]):
+
+        if self.identity_param not in factors:
+            factors = [self.identity_param] + list(factors)
+        super().__init__("factor", factors)
+
+    def apply_aug_image(self, image, factor=1., **kwargs):
+        if factor != self.identity_param:
+            return F.adjust_brightness(image, factor)
+        return image
+
+
+class AverageBlur(ImageOnlyTransform):
+    """Apply average blur to the input image
+
+    Args:
+        kernel_sizes (List[Union[Tuple[int, int], int]]): kernel size of average blur
+    """
+
+    identity_param = 1
+
+    def __init__(
+        self,
+        kernel_sizes: List[Union[Tuple[int, int], int]],
+    ):
+        if self.identity_param not in kernel_sizes:
+            kernel_sizes = [self.identity_param] + list(kernel_sizes)
+        super().__init__("kernel_size", kernel_sizes)
+
+    def apply_aug_image(self, image, kernel_size, **kwargs):
+        if kernel_size == self.identity_param:
+            return image
+        return F.average_blur(image, kernel_size)
+
+
+class GaussianBlur(ImageOnlyTransform):
+    """Apply gaussian blur to the input image
+
+    Args:
+        kernel_sizes (List[Union[Tuple[int, int], int]]): kernel size of gaussian blur
+        sigma (Optional[Union[Tuple[float, float], float]]): gaussian kernel standard deviation
+    """
+    
+    identity_param = 1
+
+    def __init__(
+        self,
+        kernel_sizes: List[Union[Tuple[int, int], int]],
+        sigma: Optional[Union[Tuple[float, float], float]] = None
+    ):
+        if self.identity_param not in kernel_sizes:
+            kernel_sizes = [self.identity_param] + list(kernel_sizes)
+        self.sigma = sigma
+        super().__init__("kernel_size", kernel_sizes)
+
+    def apply_aug_image(self, image, kernel_size, **kwargs):
+        if kernel_size == self.identity_param:
+            return image
+        return F.gaussian_blur(image, kernel_size, self.sigma)
+
+
+class Sharpen(ImageOnlyTransform):
+    """Apply sharpen to the input image
+
+    Args:
+        kernel_sizes (List[int]): kernel size of sharpen
+    """
+
+    identity_param = 1
+
+    def __init__(self, kernel_sizes: List[int]):
+        if self.identity_param not in kernel_sizes:
+            kernel_sizes = [self.identity_param] + list(kernel_sizes)
+        super().__init__("kernel_size", kernel_sizes)
+
+    def apply_aug_image(self, image, kernel_size, **kwargs):
+        if kernel_size == self.identity_param:
+            return image
+        return F.sharpen(image, kernel_size)
