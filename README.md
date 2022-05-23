@@ -70,6 +70,8 @@ tta_model = tta.KeypointsTTAWrapper(model, tta.aliases.flip_transform(), scaled=
 
 #### Use-Tools
 #####  Segmentation model [[docstring](tools/seg.py)]:
+**Note**: Usually, we recommend that the picture's shape is [**, **, 3].
+
 We recommend modifying the file `seg.py` according to your own model.
 ```python
 python seg.py --model_path='output/model' \
